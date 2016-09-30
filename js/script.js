@@ -71,8 +71,18 @@ function showRemoveNumber(){
 };
 
 function showLookup() {
+  var output = "";
   var lookup = prompt("Enter name to lookup");
-  
+  for (var i = 0; i < phoneBook.length; i++) {
+    if (phoneBook[i].name = lookup) {
+       output += lookup + "<br>";
+      for(var j =0; j < phoneBook[i].numbers.length; j++) {
+        output += " " + phoneBook[i].numbers[j] + "<br>";
+      }
+    }
+  }
+  display.innerHTML = output;
+
 };
 
 function showReverseLookup() {
