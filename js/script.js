@@ -6,7 +6,7 @@ var phoneBook = [];
 
 function phoneBookEntry(name, numbers) {
   this.name = name;
-  this.numbers = [];
+  this.numbers = numbers;
 }
 
 function showAddEntry() {
@@ -20,7 +20,7 @@ function showAddEntry() {
   }
   var entry = new phoneBookEntry(name, numbers);
   phoneBook.push(entry);
-  output += name + "has been added to the phone book";
+  output += name + " has been added to the phone book";
   display.innerHTML = output;
 
 };
@@ -44,7 +44,7 @@ function showRemoveEntry() {
   for(var i = 0; i < phoneBook.length; i++) {
     if(phoneBook[i].name == remove) {
       phoneBook.splice(i,1);
-      output += remove + "has been removed from the phoneBook"
+      output += remove + " has been removed from the phoneBook"
     } else {
       output += "Sorry, that record could not be found."
     }
@@ -55,26 +55,24 @@ function showRemoveEntry() {
 function showRemoveNumber(){
   var output = "";
   var name = prompt ("Enter the name on the entry you'd like to edit.")
+  var removeNum = prompt("Enter the number you wish to remove.")
   for (var i = 0; i < phoneBook.length; i++) {
     if (phoneBook[i].name == name){
-       for(var j = 0; j < phoneBookEntry.numbers.length; j++) {
-         output += name + phoneBookEntry.numbers[j];
+       for(var j = 0; j < phoneBook[i].numbers.length; j++) {
+         if (phoneBook[i].numbers[j] == removeNum) {
+           phoneBook[i].numbers.splice(j,1);
+           output += "This number has been removed from " + name;
+         }
        }
-    }
-  }
-  display.innerHTML = output;
-  var removeNum = prompt("Enter the number you wish to remove.")
-  for (var k = 0; k < phoneBookEntry.numbers.length; k++) {
-    if (phoneBookEntry.numbers[k] == removeNum) {
-      phoneBookEntry.numbers.splice(k,1);
-      output += removeNum + "has been removed from that Entry.";
-    } else { output += "Sorry, could not find that number to remove."}
+    } else { output+= "Sorry, that name could not be found.";
+      }
   }
   display.innerHTML = output;
 };
 
 function showLookup() {
   var lookup = prompt("Enter name to lookup");
+  
 };
 
 function showReverseLookup() {
