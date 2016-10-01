@@ -45,9 +45,10 @@ function showRemoveEntry() {
     if(phoneBook[i].name == remove) {
       phoneBook.splice(i,1);
       output += remove + " has been removed from the phoneBook"
-    } else {
-      output += "Sorry, that record could not be found."
     }
+    //else {
+    //   output += "Sorry, that record could not be found."
+    // }
   }
   display.innerHTML = output;
 };
@@ -62,10 +63,10 @@ function showRemoveNumber(){
          if (phoneBook[i].numbers[j] == removeNum) {
            phoneBook[i].numbers.splice(j,1);
            output += "This number has been removed from " + name;
-         }
+         } else { output+= "Sorry, that name could not be found.";
+           }
        }
-    } else { output+= "Sorry, that name could not be found.";
-      }
+    }
   }
   display.innerHTML = output;
 };
@@ -74,7 +75,7 @@ function showLookup() {
   var output = "";
   var lookup = prompt("Enter name to lookup");
   for (var i = 0; i < phoneBook.length; i++) {
-    if (phoneBook[i].name = lookup) {
+    if (phoneBook[i].name == lookup) {
        output += lookup + "<br>";
       for(var j =0; j < phoneBook[i].numbers.length; j++) {
         output += " " + phoneBook[i].numbers[j] + "<br>";
@@ -86,15 +87,35 @@ function showLookup() {
 };
 
 function showReverseLookup() {
+  var output = "";
   var reverseLookUp = prompt("Enter number to lookup");
+  for (var i = 0; i < phoneBook.length; i++) {
+    for (var j = 0; j < phoneBook[i].numbers.length; j++) {
+      if (phoneBook[i].numbers[j] == reverseLookUp) {
+          output += phoneBook[i].name + "<br>";
+      }
+    }
+  }
+  display.innerHTML = output;
 };
 
 function listAllNames() {
-  phoneBook.toString();
+  var output = "";
+  for (var i = 0; i < phoneBook.length; i++) {
+    output += phoneBook[i].name + "<br>";
+  }
+  display.innerHTML = output;
 };
 
 function listAllEntries() {
-  //phoneBook.numbers.toString(); // Cannot read property "toString" undefined
+  var output = "";
+  for (var i = 0; i < phoneBook.length; i++) {
+      output += phoneBook[i].name + "<br>";
+    for (var j = 0; j < phoneBook[i].numbers.length; j++) {
+      output += phoneBook[i].numbers[j] + "<br>";
+    }
+  }
+  display.innerHTML = output;
 };
 
 
